@@ -1,2 +1,0 @@
-# person-microservice
-Person Microservice
