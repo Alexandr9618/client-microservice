@@ -1,16 +1,21 @@
 package com.nttdata.person.model;
 
 import java.util.Date;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import lombok.Getter;
-import lombok.Setter;
 
-@Setter @Getter
-@Document(collection = "person")
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name="person_ids")
 public class Person {
 	@Id
-	private String personId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long personId;
 	private String firstName;
 	private String lastName;
 	private String documentType;
