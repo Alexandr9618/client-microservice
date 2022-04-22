@@ -36,7 +36,8 @@ public class PersonServiceImpl implements IPersonService{
 	@Override
 	public Mono<Person> getPersonById(String personId) {
 		// TODO Auto-generated method stub
-		return personRepository.findById(personId).onErrorResume(e -> {
+		return personRepository.findById(personId)
+				.onErrorResume(e -> {
             LOGGER.error("[" + getClass().getName() + "][getPersonById]" + e);
             return Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "" + e));
         });
