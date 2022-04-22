@@ -8,14 +8,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.nttdata.person.model.Person;
 import com.nttdata.person.repository.IPersonRepository;
-import com.nttdata.person.service.PersonService;
+import com.nttdata.person.service.IPersonService;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 @Service
-public class PersonServiceImpl implements PersonService{
+public class PersonServiceImpl implements IPersonService{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PersonServiceImpl.class);
 	

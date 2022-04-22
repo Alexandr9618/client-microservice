@@ -5,7 +5,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
-public interface PersonService {
+public interface IPersonService {
 
 	Mono<Person> addPerson(Person person);
 	Mono<Person> getPersonById(String personId);
