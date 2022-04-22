@@ -1,11 +1,16 @@
 package com.nttdata.person.service.impl;
 
+import java.util.Calendar;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.nttdata.person.dto.PersonCreateDTO;
+import com.nttdata.person.dto.PersonSupplierDTO;
+import com.nttdata.person.mapper.IPersonSupplierMapperService;
 import com.nttdata.person.model.Person;
 import com.nttdata.person.repository.IPersonRepository;
 import com.nttdata.person.service.IPersonService;
@@ -20,10 +25,16 @@ public class PersonServiceImpl implements IPersonService{
 	private static final Logger LOGGER = LoggerFactory.getLogger(PersonServiceImpl.class);
 	
 	private final IPersonRepository personRepository;
+	private final IPersonSupplierMapperService personSupplierMapperService;
 
 	@Override
-	public Mono<Person> addPerson(Person person) {
+	public Mono<Person> addPerson(PersonCreateDTO personCreateDTO) {
 		// TODO Auto-generated method stub
+		Calendar calendar=Calendar.getInstance();
+		PersonSupplierDTO personSupplierDTO=new PersonSupplierDTO(null,personCreateDTO.getFirstName(),personCreateDTO.getLastName(),personCreateDTO.getDocumentType(),
+				personCreateDTO.getDocument(),personCreateDTO.getDateNac(),personCreateDTO.getEmail(),personCreateDTO.getIphone(),
+				personCreateDTO.getAddress(),calendar.getTime(),null);
+		Person person=personSupplierMapperService.convertPersonSupplierDTOToPerson(personSupplierDTO);
 		return personRepository.save(person)
 				.onErrorResume(e -> {
                     LOGGER.error("[" + getClass().getName() + "][addPerson]" + e);

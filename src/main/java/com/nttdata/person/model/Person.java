@@ -44,10 +44,10 @@ public class Person {
 	private String address;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Field(name = "created_at", write = Field.Write.NON_NULL)
+	@Field(name = "created_at")
 	private Date createdAt;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Field(name = "updated_at", write = Field.Write.NON_NULL)
+	@Field(name = "updated_at")
 	private Date updatedAt;
 }

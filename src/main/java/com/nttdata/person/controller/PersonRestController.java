@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nttdata.person.dto.PersonCreateDTO;
 import com.nttdata.person.model.Person;
 import com.nttdata.person.service.IPersonService;
 
@@ -34,7 +35,7 @@ public class PersonRestController {
 	
 	@ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Mono<Person> addPerson(@RequestBody Person person){
+	public Mono<Person> addPerson(@RequestBody PersonCreateDTO person){
 		return personService.addPerson(person);
 	}
 	

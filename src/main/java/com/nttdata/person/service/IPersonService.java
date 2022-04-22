@@ -1,4 +1,5 @@
 package com.nttdata.person.service;
+import com.nttdata.person.dto.PersonCreateDTO;
 import com.nttdata.person.model.Person;
 
 import reactor.core.publisher.Flux;
@@ -7,7 +8,7 @@ import reactor.core.publisher.Mono;
 
 public interface IPersonService {
 
-	Mono<Person> addPerson(Person person);
+	Mono<Person> addPerson(PersonCreateDTO person);
 	Mono<Person> getPersonById(String personId);
 	Mono<Person> setUpdatePerson(Person person);
 	Mono<Void> deletePerson(String id);

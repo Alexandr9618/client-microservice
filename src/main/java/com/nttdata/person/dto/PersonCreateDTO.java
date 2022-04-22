@@ -43,8 +43,4 @@ public class PersonCreateDTO {
 	@NotNull(message=Constant.EMPTY_NULL_FIELD)
 	@NotEmpty(message=Constant.EMPTY_NULL_FIELD)
 	private String address;
-	
-	@NotNull(message=Constant.EMPTY_NULL_FIELD)
-	@NotEmpty(message=Constant.EMPTY_NULL_FIELD)
-	private Date createdAt;
 }
