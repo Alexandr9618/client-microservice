@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@Document(collection = "person_type")
+@Document(collection = "person_types")
 public class Person_Type {
 	
 	@Id
@@ -24,10 +24,10 @@ public class Person_Type {
 	private String name;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Field(name = "createdAt", write = Field.Write.NON_NULL)
+	@Field(name = "created_at", write = Field.Write.NON_NULL)
 	private Date createdAt;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Field(name = "updatedAt", write = Field.Write.NON_NULL)
+	@Field(name = "updated_at", write = Field.Write.NON_NULL)
 	private Date updatedAt;
 }

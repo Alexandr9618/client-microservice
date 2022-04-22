@@ -13,22 +13,25 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@Document(collection = "person_type")
+@Document(collection = "persons")
 public class Person {
 	@Id	
 	private String personId;
 	
-	@Field(name = "firstName", write = Field.Write.NON_NULL)
+	@Field(name = "first_name", write = Field.Write.NON_NULL)
 	private String firstName;
 	
-	@Field(name = "lastName", write = Field.Write.NON_NULL)
+	@Field(name = "last_name", write = Field.Write.NON_NULL)
 	private String lastName;
 	
-	@Field(name = "documentType", write = Field.Write.NON_NULL)
+	@Field(name = "document_type", write = Field.Write.NON_NULL)
 	private String documentType;
 	
+	@Field(name = "document", write = Field.Write.NON_NULL)
+	private String document;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Field(name = "dateNac", write = Field.Write.NON_NULL)
+	@Field(name = "date_nac", write = Field.Write.NON_NULL)
 	private Date dateNac;
 	
 	@Field(name = "email", write = Field.Write.NON_NULL)
@@ -41,10 +44,10 @@ public class Person {
 	private String address;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Field(name = "createdAt", write = Field.Write.NON_NULL)
+	@Field(name = "created_at", write = Field.Write.NON_NULL)
 	private Date createdAt;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Field(name = "updatedAt", write = Field.Write.NON_NULL)
+	@Field(name = "updated_at", write = Field.Write.NON_NULL)
 	private Date updatedAt;
 }

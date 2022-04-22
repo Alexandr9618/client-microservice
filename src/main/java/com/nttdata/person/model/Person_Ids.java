@@ -18,9 +18,9 @@ public class Person_Ids {
 	@Id
 	private String personIdsId;
 	
-	@Field(name = "personTypeId", write = Field.Write.NON_NULL)
+	@Field(name = "person_type_id", write = Field.Write.NON_NULL)
 	private String  personTypeId;
 	
-	@Field(name = "personId", write = Field.Write.NON_NULL)
+	@Field(name = "person_id", write = Field.Write.NON_NULL)
 	private String  personId;
 }
