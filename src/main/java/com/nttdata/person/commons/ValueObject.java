@@ -1,9 +1,0 @@
-package com.nttdata.person.commons;
-
-import java.io.Serializable;
-
-public interface ValueObject<T> extends Serializable{
-
-	boolean sameValueAs(T other);
-}
-
