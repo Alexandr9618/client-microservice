@@ -1,17 +1,19 @@
 package com.nttdata.person.model;
 
 import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "persons")
 public class Person {
@@ -32,7 +34,7 @@ public class Person {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Field(name = "date_nac", write = Field.Write.NON_NULL)
-	private Date dateNac;
+	private String dateNac;
 	
 	@Field(name = "email", write = Field.Write.NON_NULL)
 	private String email;
@@ -50,4 +52,23 @@ public class Person {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Field(name = "updated_at")
 	private Date updatedAt;
+
+	
+	public Person(String firstName, String lastName, String documentType, String document, String dateNac, String email,
+			String iphone, String address, Date createdAt, Date updatedAt) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.documentType = documentType;
+		this.document = document;
+		this.dateNac = dateNac;
+		this.email = email;
+		this.iphone = iphone;
+		this.address = address;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
+	
+	
 }

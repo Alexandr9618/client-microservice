@@ -33,7 +33,7 @@ public class PersonIdsController {
     }
     
     @ResponseStatus(HttpStatus.OK)
-	@GetMapping("/{id}")
+	@GetMapping("findPersonTypeId/{id}")
     public Flux<Person_Ids> getPersonIdsByPersonTypeId(@PathVariable(name="id") String id){
     	return personIdsService.getPersonIdsByPersonTypeId(id);
     }
@@ -45,7 +45,7 @@ public class PersonIdsController {
     }
     
     @ResponseStatus(HttpStatus.OK)
-   	@GetMapping("/{id}")
+   	@GetMapping("findPersonId/{id}")
     public Mono<Person_Ids> getPersonIdsById(@PathVariable(name="id")  String id){
     	return personIdsService.getPersonIdsById(id);
     }

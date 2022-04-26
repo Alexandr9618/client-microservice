@@ -4,37 +4,34 @@ import java.util.Calendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.nttdata.person.dto.PersonCreateDTO;
-import com.nttdata.person.dto.PersonSupplierDTO;
-import com.nttdata.person.mapper.IPersonSupplierMapperService;
 import com.nttdata.person.model.Person;
 import com.nttdata.person.repository.IPersonRepository;
 import com.nttdata.person.service.IPersonService;
-import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@RequiredArgsConstructor
 @Service
 public class PersonServiceImpl implements IPersonService{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PersonServiceImpl.class);
 	
-	private final IPersonRepository personRepository;
-	private final IPersonSupplierMapperService personSupplierMapperService;
+	@Autowired
+	private IPersonRepository personRepository;
 
+	
+	
 	@Override
-	public Mono<Person> addPerson(PersonCreateDTO personCreateDTO) {
+	public Mono<Person> addPerson(Person person) {
 		// TODO Auto-generated method stub
 		Calendar calendar=Calendar.getInstance();
-		PersonSupplierDTO personSupplierDTO=new PersonSupplierDTO(null,personCreateDTO.getFirstName(),personCreateDTO.getLastName(),personCreateDTO.getDocumentType(),
+		/*PersonSupplierDTO personSupplierDTO=new PersonSupplierDTO(personCreateDTO.getFirstName(),personCreateDTO.getLastName(),personCreateDTO.getDocumentType(),
 				personCreateDTO.getDocument(),personCreateDTO.getDateNac(),personCreateDTO.getEmail(),personCreateDTO.getIphone(),
-				personCreateDTO.getAddress(),calendar.getTime(),null);
-		Person person=personSupplierMapperService.convertPersonSupplierDTOToPerson(personSupplierDTO);
+				personCreateDTO.getAddress(),calendar.getTime(),calendar.getTime());*/
+		// Person person=personSupplierMapperService.convertPersonSupplierDTOToPerson(personSupplierDTO);
 		return personRepository.save(person)
 				.onErrorResume(e -> {
                     LOGGER.error("[" + getClass().getName() + "][addPerson]" + e);
