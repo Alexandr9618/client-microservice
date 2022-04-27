@@ -1,7 +1,5 @@
 package com.nttdata.person.service.impl;
 
-import java.util.Calendar;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +25,6 @@ public class PersonServiceImpl implements IPersonService{
 	@Override
 	public Mono<Person> addPerson(Person person) {
 		// TODO Auto-generated method stub
-		Calendar calendar=Calendar.getInstance();
 		/*PersonSupplierDTO personSupplierDTO=new PersonSupplierDTO(personCreateDTO.getFirstName(),personCreateDTO.getLastName(),personCreateDTO.getDocumentType(),
 				personCreateDTO.getDocument(),personCreateDTO.getDateNac(),personCreateDTO.getEmail(),personCreateDTO.getIphone(),
 				personCreateDTO.getAddress(),calendar.getTime(),calendar.getTime());*/
