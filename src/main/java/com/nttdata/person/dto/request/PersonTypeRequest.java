@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class PersonTypeRequest {
-	private String personTypeId;
 	private String name;
+	private String creditQuantity;
 }

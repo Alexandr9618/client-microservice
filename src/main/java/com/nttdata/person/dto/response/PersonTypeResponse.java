@@ -10,11 +10,14 @@ import lombok.Data;
 @Data
 public class PersonTypeResponse {
 
-	@JsonProperty(value = "personTypeId")
-	private String personTypeId;
+	@JsonProperty(value = "id")
+	private String id;
 	
 	@JsonProperty(value = "name")
 	private String name;
+
+	@JsonProperty(value = "creditQuantity")
+	private String creditQuantity;
 	
 	@JsonProperty(value = "createdAt")
     private Date createdAt;

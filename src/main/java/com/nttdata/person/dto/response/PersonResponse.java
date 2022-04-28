@@ -4,6 +4,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import reactor.core.publisher.Mono;
 
 /**
  * @author Alexander Valerio
@@ -13,7 +14,7 @@ import lombok.Data;
 @Data
 public class PersonResponse {
 
-	@JsonProperty(value = "personId")
+	@JsonProperty(value = "id")
 	private String personId;
 	
 	@JsonProperty(value = "firstName")
@@ -28,7 +29,7 @@ public class PersonResponse {
 	@JsonProperty(value = "document")
 	private String document;
 	
-	@JsonProperty(value = "dateNac")
+	@JsonProperty(value = "birthDate")
 	private String dateNac;
 	
 	@JsonProperty(value = "email")
@@ -45,4 +46,7 @@ public class PersonResponse {
 	
 	@JsonProperty(value = "updatedAt")
 	private Date updatedAt;
+
+	@JsonProperty(value = "personType")
+	private PersonTypeResponse personType;
 }

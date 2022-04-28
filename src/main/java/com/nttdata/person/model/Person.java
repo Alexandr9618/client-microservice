@@ -32,9 +32,8 @@ public class Person {
 	@Field(name = "document", write = Field.Write.NON_NULL)
 	private String document;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Field(name = "date_nac", write = Field.Write.NON_NULL)
-	private String dateNac;
+	@Field(name = "birth_date", write = Field.Write.NON_NULL)
+	private String birthDate;
 	
 	@Field(name = "email", write = Field.Write.NON_NULL)
 	private String email;
@@ -45,23 +44,24 @@ public class Person {
 	@Field(name = "address", write = Field.Write.NON_NULL)
 	private String address;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Field(name = "created_at")
 	private Date createdAt;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Field(name = "updated_at")
 	private Date updatedAt;
 
+	@Field(name = "person_type", write = Field.Write.NON_NULL)
+	private PersonType personType;
+
 	
-	public Person(String firstName, String lastName, String documentType, String document, String dateNac, String email,
+	public Person(String firstName, String lastName, String documentType, String document, String birthDate, String email,
 			String iphone, String address, Date createdAt, Date updatedAt) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.documentType = documentType;
 		this.document = document;
-		this.dateNac = dateNac;
+		this.birthDate = birthDate;
 		this.email = email;
 		this.iphone = iphone;
 		this.address = address;
