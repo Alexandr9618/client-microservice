@@ -16,4 +16,16 @@ public class PersonIdsResponse {
 	
 	@JsonProperty(value = "personId")
 	private String  personId;
+
+	/**
+	 * @param personTypeId
+	 * @param personId
+	 */
+	public PersonIdsResponse(String personTypeId, String personId) {
+		super();
+		this.personTypeId = personTypeId;
+		this.personId = personId;
+	}
+	
+	
 }

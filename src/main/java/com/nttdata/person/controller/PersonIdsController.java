@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nttdata.person.dto.mapper.PersonIdsMapper;
+import com.nttdata.person.dto.response.PersonIdsResponse;
 import com.nttdata.person.model.Person_Ids;
 import com.nttdata.person.service.IPersonIdsService;
 
@@ -25,36 +27,61 @@ import reactor.core.publisher.Mono;
 public class PersonIdsController {
 
 	private final IPersonIdsService personIdsService;
+	private final PersonIdsMapper personIdsMapper;
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/{id}")
-    public Flux<Person_Ids> getPersonIdsByPersonId(@PathVariable(name="id") String id){
-    	return personIdsService.getPersonIdsByPersonId(id);
+    public Flux<PersonIdsResponse> getPersonIdsByPersonId(@PathVariable(name="id") String id){
+    	return personIdsMapper.toFluxResponse(personIdsService.getPersonIdsByPersonId(id));
     }
     
+    /**
+     * @param id
+     * @return
+     */
     @ResponseStatus(HttpStatus.OK)
 	@GetMapping("findPersonTypeId/{id}")
-    public Flux<Person_Ids> getPersonIdsByPersonTypeId(@PathVariable(name="id") String id){
-    	return personIdsService.getPersonIdsByPersonTypeId(id);
+    public Flux<PersonIdsResponse> getPersonIdsByPersonTypeId(@PathVariable(name="id") String id){
+    	return personIdsMapper.toFluxResponse(personIdsService.getPersonIdsByPersonTypeId(id));
     }
     
+    /**
+     * @param personIds
+     * @return
+     */
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Person_Ids> addPersonIds(@RequestBody Person_Ids personIds){
-    	return personIdsService.addPersonIds(personIds);
+    public Mono<PersonIdsResponse> addPersonIds(@RequestBody Person_Ids personIds){
+    	return personIdsMapper.toMonoResponse(personIdsService.addPersonIds(personIds));
     }
     
+    /**
+     * @param id
+     * @return
+     */
     @ResponseStatus(HttpStatus.OK)
    	@GetMapping("findPersonId/{id}")
-    public Mono<Person_Ids> getPersonIdsById(@PathVariable(name="id")  String id){
-    	return personIdsService.getPersonIdsById(id);
+    public Mono<PersonIdsResponse> getPersonIdsById(@PathVariable(name="id")  String id){
+    	return personIdsMapper.toMonoResponse(personIdsService.getPersonIdsById(id));
     }
+    /**
+     * @param personIds
+     * @return
+     */
     @ResponseStatus(HttpStatus.CREATED)
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Person_Ids> setUpdatePersonIds(@RequestBody Person_Ids personIds){
-    	return personIdsService.setUpdatePersonIds(personIds);
+    public Mono<PersonIdsResponse> setUpdatePersonIds(@RequestBody Person_Ids personIds){
+    	return personIdsMapper.toMonoResponse(personIdsService.setUpdatePersonIds(personIds));
     }    
     
+    /**
+     * @param id
+     * @return
+     */
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public Mono<Void> deletePersonIds(@PathVariable(name="id")  String id){

@@ -11,6 +11,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * @author Alexander Valerio
+ *
+ */
 @Data
 @Builder
 @AllArgsConstructor
