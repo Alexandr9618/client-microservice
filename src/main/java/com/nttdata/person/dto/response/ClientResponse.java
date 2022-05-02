@@ -4,7 +4,6 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import reactor.core.publisher.Mono;
 
 /**
  * @author Alexander Valerio
@@ -12,7 +11,7 @@ import reactor.core.publisher.Mono;
  */
 @AllArgsConstructor
 @Data
-public class PersonResponse {
+public class ClientResponse {
 
 	@JsonProperty(value = "id")
 	private String personId;
@@ -47,6 +46,6 @@ public class PersonResponse {
 	@JsonProperty(value = "updatedAt")
 	private Date updatedAt;
 
-	@JsonProperty(value = "personType")
-	private PersonTypeResponse personType;
+	@JsonProperty(value = "plan")
+	private PlanResponse personType;
 }

@@ -8,7 +8,7 @@ import lombok.Data;
 
 @AllArgsConstructor
 @Data
-public class PersonTypeResponse {
+public class PlanResponse {
 
 	@JsonProperty(value = "id")
 	private String id;

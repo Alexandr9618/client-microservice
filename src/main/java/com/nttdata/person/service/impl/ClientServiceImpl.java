@@ -1,45 +1,45 @@
 package com.nttdata.person.service.impl;
 
-import com.nttdata.person.dto.mapper.PersonMapper;
-import com.nttdata.person.dto.request.PersonRequest;
-import com.nttdata.person.service.IPersonTypeService;
+import com.nttdata.person.dto.mapper.ClientMapper;
+import com.nttdata.person.dto.request.ClientRequest;
+import com.nttdata.person.model.Client;
+import com.nttdata.person.service.IPlanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import com.nttdata.person.model.Person;
-import com.nttdata.person.model.PersonType;
-import com.nttdata.person.repository.IPersonRepository;
-import com.nttdata.person.service.IPersonService;
+import com.nttdata.person.model.Plan;
+import com.nttdata.person.repository.IClientRepository;
+import com.nttdata.person.service.IClientService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
-public class PersonServiceImpl implements IPersonService {
+public class ClientServiceImpl implements IClientService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PersonServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClientServiceImpl.class);
 
-    private final IPersonRepository personRepository;
+    private final IClientRepository clientRepository;
 
-    private final PersonMapper personMapper;
+    private final ClientMapper clientMapper;
 
-    private final IPersonTypeService personTypeService;
+    private final IPlanService planRepository;
 
-    public PersonServiceImpl(IPersonRepository personRepository, PersonMapper personMapper, IPersonTypeService personTypeService) {
-        this.personRepository = personRepository;
-        this.personMapper = personMapper;
-        this.personTypeService = personTypeService;
+    public ClientServiceImpl(IClientRepository clientRepository, ClientMapper clientMapper, IPlanService planRepository) {
+        this.clientRepository = clientRepository;
+        this.clientMapper = clientMapper;
+        this.planRepository = planRepository;
     }
 
     @Override
-    public Mono<Person> addPerson(PersonRequest request) {
-        Mono<PersonType> personType = personTypeService.findByName(request.getPersonType().getName());
-        Mono<Person> person = personMapper.toPostModel(request);
-        return personType.flatMap(pt -> person
+    public Mono<Client> addPerson(ClientRequest request) {
+        Mono<Plan> plan = planRepository.findByName(request.getPlan().getName());
+        Mono<Client> client = clientMapper.toPostModel(request);
+        return plan.flatMap(pt -> client
                 .flatMap(p -> {
-                    p.setPersonType(pt);
-                    return personRepository.save(p)
+                    p.setPlan(pt);
+                    return clientRepository.save(p)
                             .onErrorResume(e -> {
                                 LOGGER.error("[" + getClass().getName() + "][addPerson]" + e);
                                 return Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad Request" + e));
@@ -50,8 +50,8 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
-    public Mono<Person> getPersonById(String personId) {
-        return personRepository.findById(personId)
+    public Mono<Client> getPersonById(String personId) {
+        return clientRepository.findById(personId)
                 .onErrorResume(e -> {
                     LOGGER.error("[" + getClass().getName() + "][getPersonById]" + e);
                     return Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "" + e));
@@ -59,13 +59,13 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
-    public Mono<Person> setUpdatePerson(String id, PersonRequest request) {
-        Mono<PersonType> personType = personTypeService.findByName(request.getPersonType().getName());
-        return personType.flatMap(pt -> personRepository.findById(id)
-                .flatMap(p -> personMapper.toPutModel(p, request)
+    public Mono<Client> setUpdatePerson(String id, ClientRequest request) {
+        Mono<Plan> personType = planRepository.findByName(request.getPlan().getName());
+        return personType.flatMap(pt -> clientRepository.findById(id)
+                .flatMap(p -> clientMapper.toPutModel(p, request)
                         .flatMap(per -> {
-                            p.setPersonType(pt);
-                            return personRepository.save(p);
+                            p.setPlan(pt);
+                            return clientRepository.save(p);
                         }))
                 .onErrorResume(e -> {
                     LOGGER.error("[" + getClass().getName() + "][setUpdatePerson]" + e);
@@ -78,7 +78,7 @@ public class PersonServiceImpl implements IPersonService {
     @Override
     public Mono<Void> deletePerson(String id) {
         // TODO Auto-generated method stub
-        return personRepository.deleteById(id)
+        return clientRepository.deleteById(id)
                 .onErrorResume(e -> {
                     LOGGER.error("[" + getClass().getName() + "][deletePerson]" + e);
                     return Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "" + e));
@@ -86,9 +86,9 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
-    public Flux<Person> getAllPerson() {
+    public Flux<Client> getAllPerson() {
         // TODO Auto-generated method stub
-        return personRepository.findAll()
+        return clientRepository.findAll()
                 .onErrorResume(e -> {
                     LOGGER.error("[" + getClass().getName() + "][getAllPerson]" + e);
                     return Mono.error(new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "" + e));

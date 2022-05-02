@@ -5,7 +5,6 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.format.annotation.DateTimeFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +14,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "persons")
-public class Person {
+@Document(collection = "clients")
+public class Client {
 	@Id	
 	private String personId;
 	
@@ -50,12 +49,12 @@ public class Person {
 	@Field(name = "updated_at")
 	private Date updatedAt;
 
-	@Field(name = "person_type", write = Field.Write.NON_NULL)
-	private PersonType personType;
+	@Field(name = "plan", write = Field.Write.NON_NULL)
+	private Plan plan;
 
 	
-	public Person(String firstName, String lastName, String documentType, String document, String birthDate, String email,
-			String iphone, String address, Date createdAt, Date updatedAt) {
+	public Client(String firstName, String lastName, String documentType, String document, String birthDate, String email,
+				  String iphone, String address, Date createdAt, Date updatedAt) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

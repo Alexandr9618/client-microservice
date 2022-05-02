@@ -1,16 +1,14 @@
 package com.nttdata.person.repository;
 
+import com.nttdata.person.model.Plan;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.nttdata.person.model.PersonType;
 import reactor.core.publisher.Mono;
 
-import java.util.Optional;
-
 @Repository
-public interface IPersonTypeRepository extends ReactiveMongoRepository<PersonType, String> {
+public interface IPlanRepository extends ReactiveMongoRepository<Plan, String> {
 
-    Mono<PersonType> findByName(String name);
+    Mono<Plan> findByName(String name);
 
 }
