@@ -23,7 +23,7 @@ import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/person-types")
+@RequestMapping("/api/v1/plans")
 public class PlanController {
 
     private final IPlanService planService;
