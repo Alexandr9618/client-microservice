@@ -14,7 +14,7 @@ import lombok.Data;
 public class ClientResponse {
 
 	@JsonProperty(value = "id")
-	private String personId;
+	private String id;
 	
 	@JsonProperty(value = "firstName")
 	private String firstName;
@@ -47,5 +47,5 @@ public class ClientResponse {
 	private Date updatedAt;
 
 	@JsonProperty(value = "plan")
-	private PlanResponse personType;
+	private PlanResponse plan;
 }

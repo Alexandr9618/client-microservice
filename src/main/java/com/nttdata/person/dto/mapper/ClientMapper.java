@@ -69,7 +69,7 @@ public class ClientMapper {
             Mono<PlanResponse> plan = planMapper
                     .toMonoResponse(Mono.just(p.getPlan()));
             return plan.flatMap(pt -> Mono.just(
-                            new ClientResponse(p.getPersonId(), p.getFirstName(), p.getLastName(),
+                            new ClientResponse(p.getId(), p.getFirstName(), p.getLastName(),
                                     p.getDocumentType(), p.getDocument(), p.getBirthDate(), p.getEmail(),
                                     p.getIphone(), p.getAddress(), p.getCreatedAt(), p.getUpdatedAt(), pt)
                     )

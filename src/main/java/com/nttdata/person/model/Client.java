@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Document(collection = "clients")
 public class Client {
 	@Id	
-	private String personId;
+	private String id;
 	
 	@Field(name = "first_name", write = Field.Write.NON_NULL)
 	private String firstName;
